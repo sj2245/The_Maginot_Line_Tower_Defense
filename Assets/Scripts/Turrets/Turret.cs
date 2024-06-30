@@ -17,6 +17,7 @@ public class Turret : MonoBehaviour {
     public int level = 1;
     public int unlockedAfterWave = 1;
     
+    public float cooldown = 0.0f;
     public float critChance = 10.0f;
     public float critMultiplier = 2.0f;
     public float attackSpeed = 2.0f;
@@ -38,8 +39,21 @@ public class Turret : MonoBehaviour {
 
     void Update() {
         if (target != null) {
-            Shoot(target.gameObject);
+            RotateTowardsTarget();
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0f) {
+                Shoot(target.gameObject);
+                cooldown = 1.0f / attackSpeed;
+            }
         }
+    }
+
+    void RotateTowardsTarget() {
+        if (target == null) return;
+        Vector2 direction = (target.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        Quaternion rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        transform.rotation = rotation;
     }
 
     void Shoot(GameObject target) {
