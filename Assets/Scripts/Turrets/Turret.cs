@@ -21,8 +21,8 @@ public class Turret : MonoBehaviour {
     public float critChance = 10.0f;
     public float critMultiplier = 2.0f;
     public float attackSpeed = 2.0f;
-    public float damageMin = 1.0f;
-    public float damageMax = 3.0f;
+    public float damageMin = 5.0f;
+    public float damageMax = 10.0f;
     public float radiusModifier = 3.33f;
     public float cost = 100.0f;
     public float baseCost = 100.0f;
@@ -54,6 +54,15 @@ public class Turret : MonoBehaviour {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         transform.rotation = rotation;
+    }
+
+    private void OnDrawGizmos() {
+        CircleCollider2D collider = GetComponent<CircleCollider2D>();
+        if (collider != null) {
+            Handles.color = Color.cyan;
+            float colliderRange = (float)collider.radius / radiusModifier;
+            Handles.DrawWireDisc(transform.position, Vector3.forward, colliderRange);
+        }
     }
 
     void Shoot(GameObject target) {

@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour {
     private AudioSource hitSound;
     private float damageToDeal = 5f;
     private bool criticalStrike = false;
-    private float speedOfProjectile = 2f;
+    private float speedOfProjectile = 10f;
 
     private Turret shootingTurret;
 

@@ -7,8 +7,11 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class GameSettings : MonoBehaviour {
-    [HideInInspector]
-    public Transform finishLine;
+    // You can keep global variables
+    [HideInInspector] public int maxWaves = 10;
+    [HideInInspector] public int currentLevel = 1;
+    [HideInInspector] public Transform finishLine;
+    [HideInInspector] public float finishLineX = 0;
 
     void Start() {
         SetFinishLine();

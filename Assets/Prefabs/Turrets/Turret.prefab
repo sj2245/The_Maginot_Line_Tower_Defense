@@ -59,9 +59,9 @@ MonoBehaviour:
   critChance: 10
   critMultiplier: 2
   attackSpeed: 2
-  damageMin: 3
-  damageMax: 5
-  radiusModifier: 3.33
+  damageMin: 5
+  damageMax: 10
+  radiusModifier: 2.85
   cost: 100
   baseCost: 100
   shootSound: {fileID: 6146796877493919271}
@@ -209,7 +209,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9a690d857f0f176428092ebae1cb1b12, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.02
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -336,7 +336,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 69eb196aaa5cf2b498709b1b1b18197d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
   Mute: 0
