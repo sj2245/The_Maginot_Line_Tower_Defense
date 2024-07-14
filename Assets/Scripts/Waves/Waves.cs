@@ -72,6 +72,7 @@ public class Waves : MonoBehaviour {
     }
 
     public void ActivateNextWave() {
+        // Debug.Log("Outer Activate Wave " + currentWaveIndex);
         if (currentWaveIndex < waves.Length - 1) {
             if (wavesStarted == true) {
                 // waves[currentWaveIndex].SetActive(false);
@@ -83,6 +84,7 @@ public class Waves : MonoBehaviour {
             waves[currentWaveIndex].SetActive(true);
             // SetActiveWave();
             wavesStarted = true;
+            // Debug.Log("Inner Activate Wave " + currentWaveIndex);
             // GlobalData.Message = "Wave Started";
         }
     }

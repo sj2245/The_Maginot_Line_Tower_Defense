@@ -1,4 +1,5 @@
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
@@ -81,7 +82,8 @@ public class Enemy : MonoBehaviour {
     }
 
     public void TakeDamage(float damage, bool criticalStrike) {
-        currentHealth -= damage;
+        float roundedDamage = (float)Math.Round(damage);
+        currentHealth -= roundedDamage;
         currentHealth = Mathf.Clamp(currentHealth, 0, currentHealth);
     }
 

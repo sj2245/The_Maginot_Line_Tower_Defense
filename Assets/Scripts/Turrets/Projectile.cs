@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour {
     private AudioSource hitSound;
     private float damageToDeal = 5f;
     private bool criticalStrike = false;
-    private float speedOfProjectile = 10f;
+    private float speedOfProjectileInAir = 20f;
 
     private Turret shootingTurret;
 
@@ -28,7 +28,6 @@ public class Projectile : MonoBehaviour {
         hitSound = hitSnd;
         criticalStrike = isCriticalStrike;
         shootingTurret = shooter; 
-        // if (shootingTurret != null) speedOfProjectile = shootingTurret.attackSpeed;
     }
 
     void PlayHitSound() {
@@ -42,7 +41,7 @@ public class Projectile : MonoBehaviour {
         }
 
         Vector3 direction = target.transform.position - transform.position;
-        float distanceThisFrame = speedOfProjectile * Time.deltaTime;
+        float distanceThisFrame = speedOfProjectileInAir * Time.deltaTime;
 
         if (direction.magnitude <= distanceThisFrame) {
             PlayHitSound();

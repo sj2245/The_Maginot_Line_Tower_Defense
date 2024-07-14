@@ -29,15 +29,61 @@ public class Turret : MonoBehaviour {
     
     public AudioSource shootSound;
     public GameObject projectile;
+    private Transform finishLine;
     public AudioSource hitSound;
+    private Transform target;
     public Transform barrel;
-    public Transform target;
+
+    private List<GameObject> enemiesInRange = new List<GameObject>();
 
     void Start() {
         if (gameSettings == null) gameSettings = FindObjectOfType<GameSettings>();
+        GameObject finishLineObject = GameObject.FindGameObjectWithTag("Finish");
+        if (finishLineObject != null) finishLine = finishLineObject.GetComponent<Transform>();
     }
 
     void Update() {
+        if (canAim) {
+            enemiesInRange.RemoveAll(enemy => enemy == null || enemy.GetComponent<Enemy>().currentHealth <= 0);
+            FindTarget();
+            ShootAtTarget();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D trigger) {
+        if (trigger.CompareTag("Enemy")) enemiesInRange.Add(trigger.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D trigger) {
+        if (trigger.CompareTag("Enemy")) enemiesInRange.Remove(trigger.gameObject);
+    }
+
+    private void FindTarget() {
+        // Debug.Log("Finding Target");
+        GameObject closestEnemy = GetClosestEnemy();
+        if (closestEnemy != null) {
+            target = closestEnemy.transform;
+        } else {
+            target = null;
+        }
+    }
+
+    GameObject GetClosestEnemy() {
+        GameObject closestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
+        // Debug.Log("Finding Closest Enemy");
+        foreach (GameObject enemy in enemiesInRange) {
+            if (enemy == null || !enemy.activeInHierarchy) continue;
+            float distanceToFinishLineX = Mathf.Abs(enemy.transform.position.x - (finishLine == null ? gameSettings.finishLineX : finishLine.position.x));
+            if (distanceToFinishLineX < shortestDistance) {
+                shortestDistance = distanceToFinishLineX;
+                closestEnemy = enemy;
+            }
+        }
+        return closestEnemy;
+    }
+
+    void ShootAtTarget() {
         if (target != null) {
             RotateTowardsTarget();
             cooldown -= Time.deltaTime;

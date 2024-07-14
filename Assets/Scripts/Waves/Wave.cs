@@ -40,8 +40,10 @@ public class Wave : MonoBehaviour {
     }
 
     private void SpawnObject(int wavePosition) {
+        // Debug.Log("Spawn Object " + wavePosition);
         // if (wavePosition == maxObjects) Debug.Log("Last Enemy #" + wavePosition + " In Wave Spawned");
-        Enemy enemyObjectSettings = objectToSpawn.GetComponent<Enemy>();
+        GameObject newObjectToSpawn = Instantiate(objectToSpawn);
+        Enemy enemyObjectSettings = newObjectToSpawn.GetComponent<Enemy>();
         if (enemyObjectSettings != null) {
             enemyObjectSettings.speed = speed;
             enemyObjectSettings.waves = waves;
@@ -52,6 +54,5 @@ public class Wave : MonoBehaviour {
             enemyObjectSettings.currentHealth = health;
             enemyObjectSettings.wavePosition = wavePosition;
         }
-        objectToSpawn.SetActive(true);
     }
 }

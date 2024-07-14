@@ -59,8 +59,8 @@ MonoBehaviour:
   critChance: 10
   critMultiplier: 2
   attackSpeed: 2
-  damageMin: 5
-  damageMax: 10
+  damageMin: 13
+  damageMax: 15
   radiusModifier: 2.85
   cost: 100
   baseCost: 100
@@ -68,7 +68,6 @@ MonoBehaviour:
   projectile: {fileID: 5141880979645483262, guid: 5c2e5f1302fe67f44b9b01673b556ea8, type: 3}
   hitSound: {fileID: 3734665689786818358}
   barrel: {fileID: 425092667890297185}
-  target: {fileID: 0}
 --- !u!58 &425092666142052048
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -79,12 +78,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 10
 --- !u!212 &425092666142052053
 SpriteRenderer:
   m_ObjectHideFlags: 0
