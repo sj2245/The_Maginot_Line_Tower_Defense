@@ -20,7 +20,7 @@ public class Waves : MonoBehaviour {
     private int currentWaveIndex = 0;
     private bool gameStarted = false;
     [HideInInspector] public bool wavesStarted = false;
-    private bool isWaitingForNextWave = false;
+    // private bool isWaitingForNextWave = false;
 
     public bool alwaysShowPath = true;
     public Vector3[] waypoints;
@@ -49,11 +49,11 @@ public class Waves : MonoBehaviour {
         bool userNotProvidedWaves = waves == null || waves.Length == 0 || waves[0] == null;
         if (userNotProvidedWaves) {
             List<GameObject> waveList = new List<GameObject>();
-            // foreach (Transform child in transform) {
-            //     if (child.GetComponent<Wave>() != null) {
-            //         waveList.Add(child.gameObject);
-            //     }
-            // }
+            foreach (Transform child in transform) {
+                if (child.GetComponent<Wave>() != null) {
+                    waveList.Add(child.gameObject);
+                }
+            }
             waves = waveList.ToArray();
         }
     }
@@ -71,8 +71,31 @@ public class Waves : MonoBehaviour {
         return GlobalData.waypointPosition + waypoints[index];
     }
 
-    // void Update() {
+    public void ActivateNextWave() {
+        if (currentWaveIndex < waves.Length - 1) {
+            if (wavesStarted == true) {
+                // waves[currentWaveIndex].SetActive(false);
+                currentWaveIndex++;
+            }
+            GlobalData.currentWave = currentWaveIndex + 1;
+            GlobalData.lastEnemyInWaveSpawned = false;
+            GlobalData.lastEnemyInWaveDied = false;
+            waves[currentWaveIndex].SetActive(true);
+            // SetActiveWave();
+            wavesStarted = true;
+            // GlobalData.Message = "Wave Started";
+        }
+    }
 
+    // void Update() {
+        // UpdateWaves();
+    // }
+
+    // void UpdateWaves() {
+    //     bool readyForNextWave = GlobalData.lastEnemyInWaveSpawned && GlobalData.lastEnemyInWaveDied;
+    //     if (readyForNextWave && !isWaitingForNextWave) {
+    //         StartCoroutine(StartNextWaveAfterDelay());
+    //     }
     // }
 
     public void DrawPath() {
