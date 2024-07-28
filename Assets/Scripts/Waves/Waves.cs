@@ -59,7 +59,6 @@ public class Waves : MonoBehaviour {
     }
 
     void StartWaves() {
-        gameSettings.maxWaves = waves.Length;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         gameSettings.currentLevel = currentSceneIndex + 1;
         for (int i = 0; i < waves.Length; i++) {
@@ -89,8 +88,12 @@ public class Waves : MonoBehaviour {
         }
     }
 
+    // void SetActiveWave() {
+
+    // }
+
     // void Update() {
-        // UpdateWaves();
+    // UpdateWaves();
     // }
 
     // void UpdateWaves() {

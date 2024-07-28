@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Turret
+  - 'Waves '
+  - ActivateWavesButton
   layers:
   - Default
   - TransparentFX

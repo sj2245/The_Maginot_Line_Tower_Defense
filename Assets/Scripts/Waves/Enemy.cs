@@ -88,6 +88,14 @@ public class Enemy : MonoBehaviour {
     }
 
     void Die() {
+        if (wavePosition == waveMax) {
+            Debug.Log("Last Enemy #" + wavePosition + " In Wave Died");
+            GlobalData.lastEnemyInWaveDied = true;
+            bool readyForNextWave = GlobalData.lastEnemyInWaveSpawned && GlobalData.lastEnemyInWaveDied;
+            if (readyForNextWave) {
+                bool wavesFinished = GlobalData.currentWave == waveMax;
+            }
+        }
         Destroy(gameObject);
     }
 

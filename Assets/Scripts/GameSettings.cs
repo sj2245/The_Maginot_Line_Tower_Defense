@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 public class GameSettings : MonoBehaviour {
     // You can keep global variables
-    [HideInInspector] public int maxWaves = 10;
     [HideInInspector] public int currentLevel = 1;
     [HideInInspector] public Transform finishLine;
     [HideInInspector] public float finishLineX = 0;

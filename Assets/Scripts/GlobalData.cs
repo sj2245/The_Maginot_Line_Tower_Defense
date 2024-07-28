@@ -10,7 +10,6 @@ public static class GlobalData {
   public static float defaultDamage = 1f;
   public static float defaultSpeed = 2f;
 
-  public static int maxWaves = 3;
   public static int currentWave = 1;
   public static int currentLevel = 1;
   public static float startLives = 20f;
@@ -18,4 +17,27 @@ public static class GlobalData {
   public static bool hasActiveTurret = false;
   public static bool lastEnemyInWaveDied = false;
   public static bool lastEnemyInWaveSpawned = false;
+
+  public static void SetGameObjectTransparency(GameObject gameObj, float alpha) {
+    Image[] images = gameObj.GetComponentsInChildren<Image>();
+    foreach (Image img in images) {
+      Color color = img.color;
+      color.a = alpha;
+      img.color = color;
+    }
+
+    TextMeshProUGUI[] texts = gameObj.GetComponentsInChildren<TextMeshProUGUI>();
+    foreach (TextMeshProUGUI text in texts) {
+      Color color = text.color;
+      color.a = alpha;
+      text.color = color;
+    }
+
+    SpriteRenderer[] sprites = gameObj.GetComponentsInChildren<SpriteRenderer>();
+    foreach (SpriteRenderer sprite in sprites) {
+      Color color = sprite.color;
+      color.a = alpha;
+      sprite.color = color;
+    }
+  }
 }
