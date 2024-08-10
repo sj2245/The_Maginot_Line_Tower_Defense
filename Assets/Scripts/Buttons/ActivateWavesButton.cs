@@ -17,7 +17,8 @@ public class ActivateWavesButton : MonoBehaviour {
     void Start() {
         if (waves == null) waves = FindObjectOfType<Waves>();
         if (gameSettings == null) gameSettings = FindObjectOfType<GameSettings>();
-        activateWavesButton = GameObject.FindGameObjectWithTag("ActivateWavesButton");
+        GameObject activateWavesButtonCont = GameObject.FindGameObjectWithTag("ActivateWavesButton");
+        if (activateWavesButtonCont) activateWavesButton = activateWavesButtonCont.GetComponent<Button>();
         // if (waves == null) waves = GameObject.FindGameObjectWithTag("Waves");
         UpdateButtonState();
     }

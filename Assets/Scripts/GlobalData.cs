@@ -12,7 +12,8 @@ public static class GlobalData {
 
   public static int currentWave = 1;
   public static int currentLevel = 1;
-  public static float startLives = 20f;
+  public static float currentLives = 20f;
+  public static float currentGold = 500f;
   public static Vector3 waypointPosition;
   public static bool hasActiveTurret = false;
   public static bool lastEnemyInWaveDied = false;
