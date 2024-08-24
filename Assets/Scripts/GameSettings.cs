@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameSettings : MonoBehaviour {
     // You can keep global variables
@@ -14,6 +15,13 @@ public class GameSettings : MonoBehaviour {
 
     void Start() {
         SetFinishLine();
+    }
+
+    void Update() {
+        bool gameOver = GlobalData.currentLives <= 0;
+        if (gameOver) {
+            SceneManager.LoadScene(1);
+        }
     }
 
     void SetFinishLine() {
