@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class TryAgainButton : MonoBehaviour {    
     public void OnTryAgainButtonClick() {
+        GlobalData.ResetGame();
         SceneManager.LoadScene(0);
     }
 }

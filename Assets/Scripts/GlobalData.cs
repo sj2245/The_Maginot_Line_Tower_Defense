@@ -18,6 +18,13 @@ public static class GlobalData {
   public static bool hasActiveTurret = false;
   public static bool lastEnemyInWaveDied = false;
   public static bool lastEnemyInWaveSpawned = false;
+  
+  public static void ResetGame() {
+    GlobalData.currentWave = 1;
+    GlobalData.currentLevel = 1;
+    GlobalData.currentLives = 20f;
+    GlobalData.currentGold = 500f;
+  }
 
   public static void SetGameObjectTransparency(GameObject gameObj, float alpha) {
     Image[] images = gameObj.GetComponentsInChildren<Image>();
